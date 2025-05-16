@@ -9,11 +9,13 @@ import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "lucide-react"
 import { format } from "date-fns"
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 type FormValues = {
     name: string;
     channel_name: string;
     birthDate: Date;
+    gender: string
 };
 
 const CreatorRegister = () => {
@@ -42,28 +44,32 @@ const CreatorRegister = () => {
                     {/* This is the input field */}
                     <div className="mt-[60px] max-w-[515px]">
                         <form onSubmit={handleSubmit(onSubmit)}>
+                            {/* This is the your name */}
                             <Input<FormValues>
                                 id="name"
                                 label="Your Name"
                                 register={register}
                                 required
                             />
-                            <Input<FormValues>
-                                id="channel_name"
-                                label="Channel name"
-                                register={register}
-                                required
-                            />
+                            {/* This is the channel  */}
+                            <div className="mt-[10px]">
+                                <Input<FormValues>
+                                    id="channel_name"
+                                    label="Channel name"
+                                    register={register}
+                                    required
+                                />
+                            </div>
                             {/* This is the Date ans Gender */}
                             <div className="flex gap-4 mt-6">
                                 {/* This is the first div */}
-                                <div className="relative w-[280px]">
+                                <div className="relative w-[315px]">
                                     <Controller
                                         name="birthDate"
                                         control={control}
                                         rules={{ required: "Date is required" }}
                                         render={({ field }) => (
-                                            <div className="relative w-[280px] ">
+                                            <div className="relative w-[315px] ">
                                                 <Popover>
                                                     <PopoverTrigger asChild>
                                                         <Button
@@ -103,9 +109,46 @@ const CreatorRegister = () => {
 
                                 </div>
                                 {/* This is the second div */}
-                                <div>
-                                    <p>This is the first div</p>
+                                <div className="relative w-[185px]">
+                                    <Controller
+                                        name="gender"
+                                        control={control}
+                                        rules={{ required: "Please select your gender" }}
+                                        render={({ field }) => (
+                                            <>
+                                                <Select onValueChange={field.onChange} value={field.value}>
+                                                    <SelectTrigger className="peer w-full ring-1 ring-[#D9D9D9] focus:ring-[#1C1B1F] py-[18px] !h-[60px]">
+                                                        <SelectValue placeholder="Select gender" />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        <SelectGroup>
+                                                            <SelectLabel>Gender</SelectLabel>
+                                                            <SelectItem value="male">Male</SelectItem>
+                                                            <SelectItem value="female">Female</SelectItem>
+                                                            <SelectItem value="other">Other</SelectItem>
+                                                        </SelectGroup>
+                                                    </SelectContent>
+                                                </Select>
+                                                {/* Floating Label */}
+                                                {field.value && (
+                                                    <Label
+                                                        htmlFor="gender"
+                                                        className={cn(
+                                                            "absolute left-3 -top-2 text-sm text-[#1C1B1F] bg-white px-1 transition-all pointer-events-none"
+                                                        )}
+                                                    >
+                                                        Gender
+                                                    </Label>
+                                                )}
+                                                {/* Error Message */}
+                                                {errors.gender && (
+                                                    <p className="text-sm text-primaryColor mt-1">{errors.gender.message}</p>
+                                                )}
+                                            </>
+                                        )}
+                                    />
                                 </div>
+
                             </div>
                             <button type="submit">Submit</button>
                         </form>
