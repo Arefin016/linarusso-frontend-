@@ -25,7 +25,7 @@ const Input = <T extends FieldValues>({
                 />
                 <label
                     htmlFor={String(id)}
-                    className="absolute cursor-text left-0 capitalize -top-3 text-sm text-[#707070] bg-inherit mx-1 px-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-2.5 peer-focus:-top-3 peer-focus:text-[#1C1B1F] peer-focus:text-sm transition-all"
+                    className="absolute cursor-text left-0 capitalize -top-3 text-sm text-[#707070] bg-inherit mx-1 px-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-4 peer-focus:-top-3 peer-focus:text-[#1C1B1F] peer-focus:text-sm transition-all"
                 >
                     {label}
                 </label>
