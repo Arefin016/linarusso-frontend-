@@ -12,6 +12,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useEffect, useState } from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import { Checkbox } from "@/components/ui/checkbox";
 
 type FormValues = {
     name: string;
@@ -259,7 +260,7 @@ const CreatorRegister = () => {
                                 </div>
                             </div>
                             {/* This is the upload photo section */}
-                            <div className="relative w-full border-2 border-[#D9D9D9] rounded-md p-4 mt-6">
+                            <div className="relative w-full border-2 border-[#D9D9D9] rounded-md py-5 mt-6">
                                 {/* Floating Label */}
                                 <label className="absolute -top-3 left-3 bg-white px-1 text-sm font-medium text-[#707070]">
                                     Upload Photo
@@ -280,14 +281,12 @@ const CreatorRegister = () => {
                                                 value[0]?.size < 2 * 1024 * 1024 || 'Max file size is 2MB',
                                         },
                                     })}
-                                    className="mt-2 block rounded-[4px] max-w-[122px] mx-auto text-base border border-gray-300 rounded text-[#FFF] px-1 py-2 bg-primaryColor text-nowrap cursor-pointer"
+                                    className="mt-2 block rounded-[4px] max-w-[122px] mx-auto text-base border border-gray-300 rounded text-[#FFF] px-[2px] py-2 bg-primaryColor text-nowrap cursor-pointer"
                                 />
-
                                 {/* Error Message */}
                                 {errors.photo && (
                                     <p className="text-red-500 text-sm mt-1">{errors.photo.message}</p>
                                 )}
-
                                 {/* Preview Image */}
                                 {preview && (
                                     <img
@@ -299,8 +298,32 @@ const CreatorRegister = () => {
 
 
                             </div>
+                            {/* This is the checkbox field */}
+                            <div className="mt-[30px]">
+                                {/* This is the first checkbox field */}
+                                <div className="flex items-center space-x-2">
+                                    <Checkbox id="terms" />
+                                    <label
+                                        htmlFor="terms"
+                                        className="text-base font-medium leading-none text-[#727272] peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                    >
+                                        I confirm I am 18+ years old
+                                    </label>
+                                </div>
+                                {/* This is the second checkbox field */}
+                                <div className="flex items-center space-x-2 mt-5">
+                                    <Checkbox id="terms" />
+                                    <label
+                                        htmlFor="terms"
+                                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                    >
+                                        I agree to the <Link className="text-primaryColor" to={"/"}>Terms of Service</Link> & <Link className="text-primaryColor" to={"/"}>Privacy Policy</Link>
+                                        <p className="font-"></p>
+                                    </label>
+                                </div>
+                            </div>
 
-                            <button className="bg-primaryColor px-[231px] py-5 rounded-[10px] mt-5 text-[#FFF] text-lg font-semibold cursor-pointer" type="submit">Register</button>
+                            <button className="bg-primaryColor px-[222px] py-5 rounded-[10px] mt-5 text-[#FFF] text-lg font-semibold cursor-pointer" type="submit">Register</button>
                         </form>
                     </div>
                 </div>
