@@ -10,7 +10,7 @@ import { CalendarIcon } from "lucide-react"
 import { format } from "date-fns"
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
 type FormValues = {
@@ -20,13 +20,17 @@ type FormValues = {
     gender: string;
     password: string;
     confirmPassword: string;
+    photo: FileList;
 };
+
 
 const CreatorRegister = () => {
     const { register, handleSubmit, control, formState: { errors }, watch } = useForm<FormValues>();
     const [showPassword, setShowPassword] = useState(false);
     const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [preview, setPreview] = useState<string | null>(null);
+
 
     const toggleConfirmPasswordVisibility = () =>
         setShowConfirmPassword((prev) => !prev);
@@ -34,7 +38,21 @@ const CreatorRegister = () => {
 
     const onSubmit = (data: FormValues) => {
         console.log(data);
+        const file = data.photo[0];
+        console.log('File to upload:', file);
     };
+
+
+    // Watch for image preview
+    const photo = watch('photo');
+    useEffect(() => {
+        if (photo && photo.length > 0) {
+            const file = photo[0];
+            setPreview(URL.createObjectURL(file));
+        }
+    }, [photo]);
+
+
 
     return (
         <section>
@@ -240,6 +258,48 @@ const CreatorRegister = () => {
                                     )}
                                 </div>
                             </div>
+                            {/* This is the upload photo section */}
+                            <div className="relative w-full border-2 border-[#D9D9D9] rounded-md p-4 mt-6">
+                                {/* Floating Label */}
+                                <label className="absolute -top-3 left-3 bg-white px-1 text-sm font-medium text-[#707070]">
+                                    Upload Photo
+                                </label>
+                                {/* Caption */}
+                                <p className="mt-2 text-center text-[#707070] text-lg font-semibold">Upload your photo</p>
+                                {/* File Input */}
+                                <input
+                                    type="file"
+                                    accept="image/jpeg,image/png,image/jpg"
+                                    {...register('photo', {
+                                        required: 'Image is required',
+                                        validate: {
+                                            fileType: (value) =>
+                                                ['image/jpeg', 'image/png', 'image/jpg'].includes(value[0]?.type) ||
+                                                'Only JPG, JPEG, PNG allowed',
+                                            fileSize: (value) =>
+                                                value[0]?.size < 2 * 1024 * 1024 || 'Max file size is 2MB',
+                                        },
+                                    })}
+                                    className="mt-2 block rounded-[4px] max-w-[122px] mx-auto text-base border border-gray-300 rounded text-[#FFF] px-1 py-2 bg-primaryColor text-nowrap cursor-pointer"
+                                />
+
+                                {/* Error Message */}
+                                {errors.photo && (
+                                    <p className="text-red-500 text-sm mt-1">{errors.photo.message}</p>
+                                )}
+
+                                {/* Preview Image */}
+                                {preview && (
+                                    <img
+                                        src={preview}
+                                        alt="Preview"
+                                        className="mt-4 w-40 h-40 object-cover border rounded mx-auto"
+                                    />
+                                )}
+
+
+                            </div>
+
                             <button className="bg-primaryColor px-[231px] py-5 rounded-[10px] mt-5 text-[#FFF] text-lg font-semibold cursor-pointer" type="submit">Register</button>
                         </form>
                     </div>
