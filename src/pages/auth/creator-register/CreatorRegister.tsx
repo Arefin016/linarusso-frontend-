@@ -72,6 +72,7 @@ const CreatorRegister = () => {
                     </div>
                     {/*  */}
                     <form className="w-[515px] mt-[60px]" onSubmit={handleSubmit(onSubmit)}>
+                        {/* Your name and channel name */}
                         <div className="">
                             <div>
                                 <Input<FormValues>
@@ -385,7 +386,7 @@ const CreatorRegister = () => {
                         <button className="bg-primaryColor w-full border py-5 rounded-[10px] mt-5 text-[#FFF] text-lg font-semibold cursor-pointer hover:bg-white hover:border-primaryColor hover:text-primaryColor duration-300 ease-in-out" type="submit">Register</button>
                         {/*  */}
                         <div className="my-[54px] text-center">
-                            <p className="text-[#727272] text-lg">Already have an account?? <Link className="text-primaryColor" to={"/"}>Sign in</Link></p>
+                            <p className="text-[#727272] text-lg">Already have an account?? <Link className="text-primaryColor underline" to={"/auth/creator-login"}>Sign in</Link></p>
                         </div>
                     </form>
                 </div>

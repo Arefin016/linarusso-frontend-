@@ -6,6 +6,7 @@ import MainLayout from "../layouts/MainLayout";
 import AuthLayout from "../layouts/AuthLayout";
 import ChooseMember from "../pages/auth/choose-member/ChooseMember";
 import CreatorRegister from "../pages/auth/creator-register/CreatorRegister";
+import CreatorLogin from "@/pages/auth/creator-login/CreatorLogin";
 
 export const router = createBrowserRouter([
     {
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
             {
                 path: "creator-register",
                 element: <CreatorRegister />
+            },
+            {
+                path: "creator-login",
+                element: <CreatorLogin />
             }
         ]
     },
