@@ -7,16 +7,8 @@ import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { GoogleSvg, OrBorderSvg } from "@/components/svg-container/SvgContainer";
 
 type FormValues = {
-    name: string;
-    channel_name: string;
-    birthDate: Date;
-    gender: string;
     password: string;
-    confirmPassword: string;
-    photo: FileList;
     email: string;
-    isAdult: boolean;
-    agreeTerms: boolean;
 };
 
 
@@ -128,7 +120,7 @@ const CreatorLogin = () => {
                             </div>
                             <label className="text-[#727272]">Keep me logged in</label>
                         </div>
-                        {/*  */}
+                        {/* This is the sign in button */}
                         <button className="bg-primaryColor w-full border py-5 rounded-[10px] text-[#FFF] text-lg font-semibold cursor-pointer hover:bg-white hover:border-primaryColor hover:text-primaryColor duration-300 ease-in-out" type="submit">Sign in</button>
                     </form>
                     {/* This is the or border */}
