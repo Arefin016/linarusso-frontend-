@@ -129,3 +129,14 @@
     @apply bg-background text-foreground font-inter;
   }
 }
+
+/*  */
+/* global.css or your component css */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
