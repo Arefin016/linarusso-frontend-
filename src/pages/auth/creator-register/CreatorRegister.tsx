@@ -12,6 +12,8 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useEffect, useState } from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+
 
 type FormValues = {
     name: string;
@@ -33,6 +35,7 @@ const CreatorRegister = () => {
     const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [preview, setPreview] = useState<string | null>(null);
+    const [open, setOpen] = useState(false);
 
 
     const toggleConfirmPasswordVisibility = () =>
@@ -55,6 +58,14 @@ const CreatorRegister = () => {
         }
     }, [photo]);
 
+    const handleModalSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        // Registration logic here (optional)
+
+        // Open the modal
+        setOpen(true);
+    };
+
     return (
         <section>
             {/*  */}
@@ -70,7 +81,7 @@ const CreatorRegister = () => {
                         <p className="text-accentColor text-[36px] font-bold">Become a Creator on Fetishclips</p>
                         <p className="text-[#707070] text-lg font-normal max-w-[486px]">Share your foot fetish clips and grow your fanbase. it's 100% free to upload and earn.</p>
                     </div>
-                    {/*  */}
+                    {/* This is the form section */}
                     <form className="w-[515px] mt-[60px]" onSubmit={handleSubmit(onSubmit)}>
                         {/* Your name and channel name */}
                         <div className="">
@@ -299,7 +310,6 @@ const CreatorRegister = () => {
                                     </p>
                                 )}
                             </div>
-
                         </div>
                         {/* This is the uploading photo */}
                         <div className="relative w-full border-2 border-[#D9D9D9] rounded-md py-5 mt-8">
@@ -383,7 +393,24 @@ const CreatorRegister = () => {
                             )}
                         </div>
                         {/* This is the button section */}
-                        <button className="bg-primaryColor w-full border py-5 rounded-[10px] mt-5 text-[#FFF] text-lg font-semibold cursor-pointer hover:bg-white hover:border-primaryColor hover:text-primaryColor duration-300 ease-in-out" type="submit">Register</button>
+                        <button
+                            onClick={handleModalSubmit}
+                            className="bg-primaryColor w-full border py-5 rounded-[10px] mt-5 text-[#FFF] text-lg font-semibold cursor-pointer hover:bg-white hover:border-primaryColor hover:text-primaryColor duration-300 ease-in-out"
+                            type="submit"
+                        >
+                            Register
+                        </button>
+                        {/* Modal Dialog */}
+                        <Dialog open={open} onOpenChange={setOpen}>
+                            <DialogContent className="sm:max-w-md">
+                                <DialogHeader>
+                                    <DialogTitle>Registration Successful</DialogTitle>
+                                    <DialogDescription>
+                                        Your registration has been successfully completed!
+                                    </DialogDescription>
+                                </DialogHeader>
+                            </DialogContent>
+                        </Dialog>
                         {/*  */}
                         <div className="my-[54px] text-center">
                             <p className="text-[#727272] text-lg">Already have an account?? <Link className="text-primaryColor underline" to={"/auth/creator-login"}>Sign in</Link></p>
