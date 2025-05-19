@@ -7,6 +7,7 @@ import AuthLayout from "../layouts/AuthLayout";
 import ChooseMember from "../pages/auth/choose-member/ChooseMember";
 import CreatorRegister from "../pages/auth/creator-register/CreatorRegister";
 import CreatorLogin from "@/pages/auth/creator-login/CreatorLogin";
+import ViewRegister from "@/pages/auth/viewer-register/ViewRegister";
 
 export const router = createBrowserRouter([
     {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
             {
                 path: "creator-register",
                 element: <CreatorRegister />
+            },
+            {
+                path: "viewer-register",
+                element: <ViewRegister />
             },
             {
                 path: "creator-login",

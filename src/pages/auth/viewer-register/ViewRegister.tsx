@@ -24,6 +24,10 @@ import {
 } from "@/components/ui/select";
 import { useEffect, useState } from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import {
+  GoogleSvg,
+  OrBorderSvg,
+} from "@/components/svg-container/SvgContainer";
 
 type FormValues = {
   name: string;
@@ -38,7 +42,7 @@ type FormValues = {
   agreeTerms: boolean;
 };
 
-const CreatorRegister = () => {
+const ViewRegister = () => {
   const {
     register,
     handleSubmit,
@@ -84,14 +88,14 @@ const CreatorRegister = () => {
               FETISHclips
             </Link>
           </div>
-          {/* This is the Become a Creator */}
+          {/* This is the Become a Viewer */}
           <div>
             <p className="text-accentColor text-[36px] font-bold">
-              Become a Creator on Fetishclips
+              Become a Viewer on Fetishclips
             </p>
             <p className="text-[#707070] text-lg font-normal max-w-[486px]">
-              Share your foot fetish clips and grow your fanbase. it's 100% free
-              to upload and earn.
+              Create your free account to start exploring premium content. Only
+              takes a few seconds.
             </p>
           </div>
           {/*  */}
@@ -99,7 +103,7 @@ const CreatorRegister = () => {
             className="w-[515px] mt-[60px]"
             onSubmit={handleSubmit(onSubmit)}
           >
-            {/* Your name and channel name */}
+            {/* Your name*/}
             <div className="">
               <div>
                 <Input<FormValues>
@@ -110,21 +114,13 @@ const CreatorRegister = () => {
                   error={errors.name}
                 />
               </div>
-              {/* This is the channel name */}
-              <div className="mt-6">
-                <Input<FormValues>
-                  id="channel_name"
-                  label="Channel name"
-                  register={register}
-                  required
-                  error={errors.channel_name}
-                />
-              </div>
             </div>
-            {/* Date and gender */}
-            <div className="flex gap-4 mt-8">
+
+            {/* Date*/}
+
+            <div className="mt-8">
               {/* Date */}
-              <div className="w-[70%]">
+              <div className="">
                 <Controller
                   name="birthDate"
                   control={control}
@@ -174,54 +170,8 @@ const CreatorRegister = () => {
                   )}
                 />
               </div>
-              {/* gender */}
-              <div className="w-1/3">
-                <div className="relative">
-                  <Controller
-                    name="gender"
-                    control={control}
-                    rules={{ required: "Select your gender" }}
-                    render={({ field }) => (
-                      <>
-                        <Select
-                          onValueChange={field.onChange}
-                          value={field.value}
-                        >
-                          <SelectTrigger className="peer w-full ring-1 ring-[#D9D9D9] focus:ring-[#1C1B1F] py-[18px] !h-[60px]">
-                            <SelectValue placeholder="Select gender" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectGroup>
-                              <SelectLabel>Gender</SelectLabel>
-                              <SelectItem value="male">Male</SelectItem>
-                              <SelectItem value="female">Female</SelectItem>
-                              <SelectItem value="other">Other</SelectItem>
-                            </SelectGroup>
-                          </SelectContent>
-                        </Select>
-                        {/* Floating Label */}
-                        {field.value && (
-                          <Label
-                            htmlFor="gender"
-                            className={cn(
-                              "absolute left-3 -top-2 text-sm text-[#1C1B1F] bg-white px-1 transition-all pointer-events-none"
-                            )}
-                          >
-                            Gender
-                          </Label>
-                        )}
-                        {/* Error Message */}
-                        {errors.gender && (
-                          <p className="text-sm font-semibold text-primaryColor mt-1">
-                            {errors.gender.message}
-                          </p>
-                        )}
-                      </>
-                    )}
-                  />
-                </div>
-              </div>
             </div>
+
             {/* Email */}
             <div className="relative w-full mt-8">
               <input
@@ -258,6 +208,7 @@ const CreatorRegister = () => {
                 </p>
               )}
             </div>
+
             {/* Password and Confirm Password */}
             <div className="mt-8">
               <div className="relative w-full">
@@ -348,69 +299,8 @@ const CreatorRegister = () => {
                 )}
               </div>
             </div>
-            {/* This is the uploading photo */}
-            <div className="relative w-full border-2 border-[#D9D9D9] rounded-md py-5 mt-8">
-              {/* Floating Label */}
-              <label className="absolute -top-3 left-3 bg-white px-1 text-sm font-medium text-[#707070]">
-                Upload Photo
-              </label>
-              {/* Caption */}
-              <p className="mt-2 text-center text-[#707070] text-lg font-semibold">
-                Upload your photo
-              </p>
-              {/* File Input */}
-              <input
-                type="file"
-                accept="image/jpeg,image/png,image/jpg"
-                {...register("photo", {
-                  required: "Image is required",
-                  validate: {
-                    fileType: (value) =>
-                      ["image/jpeg", "image/png", "image/jpg"].includes(
-                        value[0]?.type
-                      ) || "Only JPG, JPEG, PNG allowed",
-                    fileSize: (value) =>
-                      value[0]?.size < 2 * 1024 * 1024 ||
-                      "Max file size is 2MB",
-                  },
-                })}
-                className="mt-2 block rounded-[4px] max-w-[122px] mx-auto text-base border border-gray-300 rounded text-[#FFF] px-[2px] py-2 bg-primaryColor text-nowrap cursor-pointer"
-              />
-              {/* Error Message */}
-              {errors.photo && (
-                <p className="text-primaryColor text-center font-semibold text-sm mt-1">
-                  {errors.photo.message}
-                </p>
-              )}
-              {/* Preview Image */}
-              {preview && (
-                <img
-                  src={preview}
-                  alt="Preview"
-                  className="mt-4 w-40 h-40 object-cover border rounded mx-auto"
-                />
-              )}
-            </div>
             {/* This is the checkbox */}
             <div className="mt-[30px]">
-              {/* First Checkbox */}
-              <div className="flex gap-2 items-start">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="isAdult"
-                    {...register("isAdult", {
-                      required: "You must confirm you are 18+ years old",
-                    })}
-                  />
-                </div>
-                <label htmlFor="isAdult">I confirm I am 18+ years old</label>
-              </div>
-              {errors.isAdult && (
-                <p className="text-sm font-semibold text-primaryColor mt-1">
-                  {errors.isAdult.message}
-                </p>
-              )}
               {/* Second Checkbox */}
               <div className="flex gap-2 mt-5 items-start">
                 <div>
@@ -445,9 +335,28 @@ const CreatorRegister = () => {
               className="bg-primaryColor w-full border py-5 rounded-[10px] mt-5 text-[#FFF] text-lg font-semibold cursor-pointer hover:bg-white hover:border-primaryColor hover:text-primaryColor duration-300 ease-in-out"
               type="submit"
             >
-              Register
+              Sign up
             </button>
-            {/*  */}
+            {/* Or Google Login  */}
+            <div className="flex items-center gap-[10px] my-6">
+              <OrBorderSvg />
+              <p className="text-[#6E6E6E] text-base font-medium">or</p>
+              <OrBorderSvg />
+            </div>
+            <div>
+              <Link
+                to={"/"}
+                className="flex items-center gap-3 justify-center border border-[#E6E8E7] rounded-[10px] py-4 "
+              >
+                <button className="flex items-center gap-3 cursor-pointer">
+                  <p className="text-accentColor text-lg font-semibold">
+                    Continue with Google
+                  </p>
+                  <GoogleSvg />
+                </button>
+              </Link>
+            </div>
+            {/*  Sign Up */}
             <div className="my-[54px] text-center">
               <p className="text-[#727272] text-lg">
                 Already have an account??{" "}
@@ -476,4 +385,4 @@ const CreatorRegister = () => {
   );
 };
 
-export default CreatorRegister;
+export default ViewRegister;
