@@ -18,7 +18,7 @@ const ChooseMember = () => {
                         <p className="text-secondaryColor text-[40px] font-semibold">Choose Member Type</p>
                         {/* This is the button section */}
                         <Link to={"/auth/creator-register"} className="cursor-pointer border border-primaryColor px-[155px] py-5 rounded-[8px] font-semibold hover:bg-primaryColor hover:text-[#FFFFFF] duration-300 ease-in-out">Become a Creator</Link>
-                        <Link to={"/"} className="cursor-pointer border border-primaryColor px-[155px] py-5 rounded-[8px] font-semibold hover:bg-primaryColor hover:text-[#FFFFFF] duration-300 ease-in-out">Become a Viewer</Link>
+                        <Link to={"/auth/viewer-register"} className="cursor-pointer border border-primaryColor px-[155px] py-5 rounded-[8px] font-semibold hover:bg-primaryColor hover:text-[#FFFFFF] duration-300 ease-in-out">Become a Viewer</Link>
                     </div>
                 </div>
                 {/* This is the right side div */}
